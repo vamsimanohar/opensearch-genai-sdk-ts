@@ -215,12 +215,11 @@ function setSpanAttributes(
   version: number | undefined,
   args: unknown[],
 ): void {
-  // GenAI / traceloop span kind convention
-  span.setAttribute("traceloop.span.kind", spanKind);
+  // GenAI semantic convention
   span.setAttribute("gen_ai.operation.name", spanKind);
 
   if (version !== undefined) {
-    span.setAttribute("traceloop.entity.version", version);
+    span.setAttribute("gen_ai.entity.version", version);
   }
 
   // Capture input (best-effort, don't fail if serialization fails)
@@ -243,7 +242,7 @@ function setInput(span: Span, args: unknown[]): void {
       serialized = serialized.slice(0, MAX_ATTRIBUTE_LENGTH) + "...(truncated)";
     }
 
-    span.setAttribute("traceloop.entity.input", serialized);
+    span.setAttribute("gen_ai.entity.input", serialized);
   } catch {
     // Silently ignore serialization errors
   }
@@ -264,7 +263,7 @@ function setOutput(span: Span, result: unknown): void {
       serialized = serialized.slice(0, MAX_ATTRIBUTE_LENGTH) + "...(truncated)";
     }
 
-    span.setAttribute("traceloop.entity.output", serialized);
+    span.setAttribute("gen_ai.entity.output", serialized);
   } catch {
     // Silently ignore serialization errors
   }

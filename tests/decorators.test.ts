@@ -50,7 +50,6 @@ describe("traceWorkflow", () => {
     const spans = exporter.getFinishedSpans();
     assert.equal(spans.length, 1);
     assert.equal(spans[0].name, "my_workflow");
-    assert.equal(spans[0].attributes["traceloop.span.kind"], "workflow");
     assert.equal(spans[0].attributes["gen_ai.operation.name"], "workflow");
   });
 
@@ -62,8 +61,8 @@ describe("traceWorkflow", () => {
 
     const spans = exporter.getFinishedSpans();
     assert.equal(spans.length, 1);
-    assert.equal(spans[0].attributes["traceloop.entity.input"], '"world"');
-    assert.equal(spans[0].attributes["traceloop.entity.output"], '"Hello, world!"');
+    assert.equal(spans[0].attributes["gen_ai.entity.input"], '"world"');
+    assert.equal(spans[0].attributes["gen_ai.entity.output"], '"Hello, world!"');
   });
 });
 
@@ -75,7 +74,7 @@ describe("traceTask", () => {
     const spans = exporter.getFinishedSpans();
     assert.equal(spans.length, 1);
     assert.equal(spans[0].name, "my_task");
-    assert.equal(spans[0].attributes["traceloop.span.kind"], "task");
+    assert.equal(spans[0].attributes["gen_ai.operation.name"], "task");
   });
 });
 
@@ -89,7 +88,7 @@ describe("traceAgent", () => {
     const spans = exporter.getFinishedSpans();
     assert.equal(spans.length, 1);
     assert.equal(spans[0].name, "my_agent");
-    assert.equal(spans[0].attributes["traceloop.span.kind"], "agent");
+    assert.equal(spans[0].attributes["gen_ai.operation.name"], "agent");
   });
 });
 
@@ -103,7 +102,7 @@ describe("traceTool", () => {
     const spans = exporter.getFinishedSpans();
     assert.equal(spans.length, 1);
     assert.equal(spans[0].name, "my_tool");
-    assert.equal(spans[0].attributes["traceloop.span.kind"], "tool");
+    assert.equal(spans[0].attributes["gen_ai.operation.name"], "tool");
   });
 
   it("captures multiple arguments as JSON array", () => {
@@ -111,7 +110,7 @@ describe("traceTool", () => {
     fn("hello", 42);
 
     const spans = exporter.getFinishedSpans();
-    const input = spans[0].attributes["traceloop.entity.input"];
+    const input = spans[0].attributes["gen_ai.entity.input"];
     assert.equal(input, '["hello",42]');
   });
 });
@@ -129,8 +128,8 @@ describe("async tracing", () => {
     const spans = exporter.getFinishedSpans();
     assert.equal(spans.length, 1);
     assert.equal(spans[0].name, "async_workflow");
-    assert.equal(spans[0].attributes["traceloop.span.kind"], "workflow");
-    assert.equal(spans[0].attributes["traceloop.entity.output"], "30");
+    assert.equal(spans[0].attributes["gen_ai.operation.name"], "workflow");
+    assert.equal(spans[0].attributes["gen_ai.entity.output"], "30");
   });
 
   it("records errors from async functions", async () => {
@@ -197,7 +196,7 @@ describe("version attribute", () => {
 
     const spans = exporter.getFinishedSpans();
     assert.equal(spans.length, 1);
-    assert.equal(spans[0].attributes["traceloop.entity.version"], 3);
+    assert.equal(spans[0].attributes["gen_ai.entity.version"], 3);
   });
 });
 

@@ -1,6 +1,6 @@
 {
   "name": "opensearch-genai-sdk",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "OTEL-native tracing, scoring, and evaluation for LLM applications on OpenSearch",
   "type": "module",
   "main": "dist/index.js",
