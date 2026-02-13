@@ -1,5 +1,5 @@
 {
-  "name": "@opensearch-project/genai-sdk",
+  "name": "opensearch-genai-sdk",
   "version": "0.1.0",
   "description": "OTEL-native tracing, scoring, and evaluation for LLM applications on OpenSearch",
   "type": "module",
