@@ -1,0 +1,53 @@
+{
+  "name": "@opensearch-project/genai-sdk",
+  "version": "0.1.0",
+  "description": "OTEL-native tracing, scoring, and evaluation for LLM applications on OpenSearch",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./evals": {
+      "import": "./dist/evals/index.js",
+      "types": "./dist/evals/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "example:basics": "tsx examples/01-tracing-basics.ts",
+    "example:scoring": "tsx examples/02-scoring.ts",
+    "example:evaluate": "tsx examples/03-evaluate.ts",
+    "example:dummy": "tsx examples/dummy-agent.ts"
+  },
+  "keywords": [
+    "opensearch",
+    "opentelemetry",
+    "observability",
+    "tracing",
+    "llm",
+    "genai",
+    "evaluation"
+  ],
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.57.0",
+    "@opentelemetry/resources": "^1.30.0",
+    "@opentelemetry/sdk-node": "^0.57.0",
+    "@opentelemetry/sdk-trace-base": "^1.30.0",
+    "@opentelemetry/sdk-trace-node": "^1.30.0",
+    "@opentelemetry/semantic-conventions": "^1.28.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}
